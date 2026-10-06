@@ -14,10 +14,7 @@ promociones, pedidos e información de contacto.
 - Roberto Gabriel Arias Badilla
 - Minor Gabriel Segura Solano
 
-## Tecnologías previstas
-- (completar: lenguaje, framework y base de datos del curso)
-
 ## Estado del proyecto
 Avance 1: planificación, historias de usuario y prototipo.
 
-## Acuerdo de trabajo por ramas
+
