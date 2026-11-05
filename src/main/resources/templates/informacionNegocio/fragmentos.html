@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+    <body>
+
+        <section th:fragment="formulario" class="container pt-5 pb-5">
+
+            <h1 class="fw-bold text-danger-emphasis">
+                Información del negocio
+            </h1>
+
+            <p class="text-muted">
+                Desde aquí podés actualizar la información de contacto
+                de Kamaky Products.
+            </p>
+
+            <form th:action="@{/informacionNegocio/guardar}"
+                  th:object="${informacionNegocio}"
+                  method="POST">
+
+                <input type="hidden" th:field="*{idInformacion}"/>
+
+                <div class="card shadow-sm mt-4">
+                    <div class="card-body p-4">
+
+                        <div class="mb-3">
+                            <label class="form-label">Nombre del negocio</label>
+                            <input type="text"
+                                   class="form-control"
+                                   th:field="*{nombre}"
+                                   required/>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Descripción</label>
+                            <textarea class="form-control"
+                                      th:field="*{descripcion}"
+                                      rows="3"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Teléfono</label>
+                            <input type="text"
+                                   class="form-control"
+                                   th:field="*{telefono}"/>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Correo electrónico</label>
+                            <input type="email"
+                                   class="form-control"
+                                   th:field="*{correo}"/>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Ubicación</label>
+                            <input type="text"
+                                   class="form-control"
+                                   th:field="*{ubicacion}"/>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">WhatsApp</label>
+                            <input type="text"
+                                   class="form-control"
+                                   th:field="*{whatsapp}"/>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Instagram</label>
+                            <input type="text"
+                                   class="form-control"
+                                   th:field="*{instagram}"/>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Facebook</label>
+                            <input type="text"
+                                   class="form-control"
+                                   th:field="*{facebook}"/>
+                        </div>
+
+                        <button type="submit" class="btn btn-danger">
+                            Guardar información
+                        </button>
+
+                    </div>
+                </div>
+            </form>
+        </section>
+
+    </body>
+</html>
