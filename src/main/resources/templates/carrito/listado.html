@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="~{plantilla/fragmentos :: head}"></head>
+
+    <body class="bg-light">
+
+        <header th:replace="~{plantilla/fragmentos :: encabezado}"></header>
+
+        <main class="container mt-5">
+
+            <h2 class="mb-4">Mi carrito de compras</h2>
+
+            <div th:if="${carrito.isEmpty()}"
+                 class="alert alert-info">
+                No hay productos en el carrito.
+            </div>
+
+            <div th:if="${!carrito.isEmpty()}">
+
+                <table class="table table-bordered table-striped">
+
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Producto</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                            <th>Subtotal</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr th:each="item : ${carrito}">
+
+                            <td th:text="${item.producto.nombre}"></td>
+
+                            <td th:text="${item.producto.precio}"></td>
+
+                            <td>
+                                <form th:action="@{/carrito/actualizar}"
+                                      method="post">
+
+                                    <input type="hidden"
+                                           name="idProducto"
+                                           th:value="${item.producto.idProducto}"/>
+
+                                    <input type="number"
+                                           name="cantidad"
+                                           th:value="${item.cantidad}"
+                                           min="1"
+                                           class="form-control mb-2"
+                                           style="width: 90px;"/>
+
+                                    <button type="submit"
+                                            class="btn btn-primary btn-sm">
+                                        Actualizar
+                                    </button>
+
+                                </form>
+                            </td>
+
+                            <td th:text="${item.subtotal}"></td>
+
+                            <td>
+                                <form th:action="@{/carrito/eliminar}"
+                                      method="post">
+
+                                    <input type="hidden"
+                                           name="idProducto"
+                                           th:value="${item.producto.idProducto}"/>
+
+                                    <button type="submit"
+                                            class="btn btn-danger btn-sm">
+                                        Eliminar
+                                    </button>
+
+                                </form>
+                            </td>
+
+                        </tr>
+                    </tbody>
+
+                </table>
+
+                <h4 class="text-end mb-4">
+                    Total: ₡<span th:text="${total}"></span>
+                </h4>
+
+                <div class="d-flex justify-content-between">
+
+                    <a th:href="@{/producto/catalogo}"
+                       class="btn btn-secondary">
+                        Seguir comprando
+                    </a>
+
+                    <a th:href="@{/pedido/confirmar}"
+                       class="btn btn-success">
+                        Realizar pedido
+                    </a>
+
+                </div>
+
+            </div>
+
+        </main>
+
+        <footer th:replace="~{plantilla/fragmentos :: pie}"></footer>
+
+    </body>
+</html>
