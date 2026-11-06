@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="~{plantilla/fragmentos :: head}"></head>
+
+    <body class="bg-light">
+
+        <header th:replace="~{plantilla/fragmentos :: encabezado}"></header>
+
+        <main class="container mt-5">
+
+            <h2 class="mb-4">Confirmar pedido</h2>
+
+            <section th:replace="~{plantilla/fragmentos :: mensajes}"></section>
+
+            <div class="row">
+
+                <div class="col-md-7">
+
+                    <div class="card shadow-sm mb-4">
+
+                        <div class="card-header bg-danger text-white">
+                            Datos del cliente
+                        </div>
+
+                        <div class="card-body">
+
+                            <form th:action="@{/pedido/guardar}"
+                                  th:object="${cliente}"
+                                  method="post">
+
+                                <div class="mb-3">
+                                    <label class="form-label">
+                                        Nombre completo
+                                    </label>
+                                    <input type="text"
+                                           th:field="*{nombre}"
+                                           class="form-control"
+                                           maxlength="80"
+                                           required="required"/>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">
+                                        Teléfono
+                                    </label>
+                                    <input type="text"
+                                           th:field="*{telefono}"
+                                           class="form-control"
+                                           maxlength="20"
+                                           required="required"/>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">
+                                        Correo electrónico
+                                    </label>
+                                    <input type="email"
+                                           th:field="*{correo}"
+                                           class="form-control"
+                                           maxlength="100"
+                                           required="required"/>
+                                </div>
+
+                                <button type="submit"
+                                        class="btn btn-success">
+                                    Confirmar compra
+                                </button>
+
+                                <a th:href="@{/carrito}"
+                                   class="btn btn-secondary">
+                                    Volver al carrito
+                                </a>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-5">
+
+                    <div class="card shadow-sm">
+
+                        <div class="card-header bg-danger text-white">
+                            Resumen de la compra
+                        </div>
+
+                        <div class="card-body">
+
+                            <div th:each="item : ${carrito}"
+                                 class="border-bottom pb-2 mb-2">
+
+                                <strong th:text="${item.producto.nombre}">
+                                </strong>
+
+                                <p class="mb-1">
+                                    Cantidad:
+                                    <span th:text="${item.cantidad}"></span>
+                                </p>
+
+                                <p class="mb-1">
+                                    Subtotal: ₡
+                                    <span th:text="${item.subtotal}"></span>
+                                </p>
+
+                            </div>
+
+                            <h4 class="text-end mt-3">
+                                Total: ₡
+                                <span th:text="${total}"></span>
+                            </h4>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </main>
+
+        <footer th:replace="~{plantilla/fragmentos :: pie}"></footer>
+
+    </body>
+</html>
