@@ -31,6 +31,43 @@ create table cliente (
 
 -- ================== KATHERINE: usuario, informacion_negocio ==================
 
+create table usuario (
+    id_usuario int not null auto_increment,
+    nombre varchar(80) not null,
+    correo varchar(100) not null,
+    contrasena varchar(100) not null,
+    rol varchar(20) not null,
+    primary key (id_usuario),
+    unique (correo)
+);
+
+create table informacion_negocio (
+    id_informacion int not null auto_increment,
+    nombre varchar(100) not null,
+    descripcion text,
+    telefono varchar(20),
+    correo varchar(100),
+    ubicacion varchar(150),
+    whatsapp varchar(150),
+    instagram varchar(150),
+    facebook varchar(150),
+    primary key (id_informacion)
+);
+
+insert into informacion_negocio
+(nombre, descripcion, telefono, correo, ubicacion,
+ whatsapp, instagram, facebook)
+values
+('Kamaky Products',
+ 'Reposteria artesanal para toda ocasion',
+ '8888-1234',
+ 'contacto@kamaky.com',
+ 'Costa Rica',
+ '8888-8888',
+ 'https://instagram.com/',
+ 'https://facebook.com/');
+
+
 
 -- ================== MINOR: categoria, producto ==================
 

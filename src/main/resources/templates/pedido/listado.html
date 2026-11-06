@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="~{plantilla/fragmentos :: head}"></head>
+
+    <body class="bg-light">
+
+        <header th:replace="~{plantilla/fragmentos :: encabezado}"></header>
+
+        <main class="container mt-5 mb-5">
+
+            <h2 class="fw-bold mb-4">Pedidos registrados</h2>
+
+            <div class="card shadow-sm">
+                <div class="card-body">
+
+                    <div th:if="${pedidos.isEmpty()}"
+                         class="alert alert-info">
+                        No hay pedidos registrados.
+                    </div>
+
+                    <table th:if="${!pedidos.isEmpty()}"
+                           class="table table-striped">
+
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Número</th>
+                                <th>Fecha</th>
+                                <th>Cliente</th>
+                                <th>Estado</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr th:each="pedido : ${pedidos}">
+
+                                <td th:text="${pedido.idPedido}"></td>
+
+                                <td th:text="${pedido.fecha}"></td>
+
+                                <td th:text="${pedido.cliente.nombre}"></td>
+
+                                <td th:text="${pedido.estado}"></td>
+
+                                <td th:text="${pedido.total}"></td>
+
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                    <a th:href="@{/admin}"
+                       class="btn btn-secondary mt-3">
+                        Volver al panel
+                    </a>
+
+                </div>
+            </div>
+
+        </main>
+
+        <footer th:replace="~{plantilla/fragmentos :: pie}"></footer>
+
+    </body>
+</html>

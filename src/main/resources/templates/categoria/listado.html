@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="~{plantilla/fragmentos :: head}"></head>
+
+    <body class="bg-light">
+
+        <header th:replace="~{plantilla/fragmentos :: encabezado}"></header>
+
+        <main class="container mt-5 mb-5">
+
+            <h2 class="fw-bold mb-4">Categorías</h2>
+
+            <div class="card shadow-sm">
+
+                <div class="card-body">
+
+                    <table class="table table-striped">
+
+                        <thead class="table-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Descripción</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr th:each="categoria : ${categorias}">
+
+                                <td th:text="${categoria.idCategoria}"></td>
+
+                                <td th:text="${categoria.nombre}"></td>
+
+                                <td th:text="${categoria.descripcion}"></td>
+
+                                <td th:text="${categoria.activa ? 'Activa' : 'Inactiva'}"></td>
+
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                    <a th:href="@{/admin}"
+                       class="btn btn-secondary">
+                        Volver al panel
+                    </a>
+
+                </div>
+
+            </div>
+
+        </main>
+
+        <footer th:replace="~{plantilla/fragmentos :: pie}"></footer>
+
+    </body>
+</html>

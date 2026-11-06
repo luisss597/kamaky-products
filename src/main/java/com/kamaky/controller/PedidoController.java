@@ -29,6 +29,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class PedidoController {
 
     private final PedidoService pedidoService;
+    
+    
+    @GetMapping("/listado")
+    public String listado(Model model) {
+        model.addAttribute("pedidos", pedidoService.getPedidos());
+        return "pedido/listado";
+    }
+
 
     @GetMapping("/confirmar")
     public String confirmar(Model model, HttpSession session) {
